@@ -19,6 +19,7 @@ const PERGUNTAS_LABELS = {
   ar_condicionado: 'Ar-condicionado',
   cintos_seguranca: 'Cintos de segurança',
   tracao_4x4_funcionando: 'Tração 4x4 funcionando',
+  nivel_combustivel: 'Nível de combustível',
 };
 
 const FOTOS_LABELS = { frente: 'Frente', lateral: 'Lateral', pneu: 'Pneu', interna: 'Interna', painel: 'Painel' };
@@ -109,9 +110,13 @@ export default function MeusChecklists() {
                     {Object.entries(c.respostas || {}).map(([key, valor]) => (
                       <div key={key} className="flex items-center justify-between text-sm">
                         <span className="text-gray-600">{PERGUNTAS_LABELS[key] || key}</span>
-                        <span className={`font-semibold text-xs ${valor ? 'text-success-600' : 'text-danger-600'}`}>
-                          {valor ? 'Sim' : 'Não'}
-                        </span>
+                        {typeof valor === 'string' ? (
+                          <span className="font-semibold text-xs text-gray-700">{valor}</span>
+                        ) : (
+                          <span className={`font-semibold text-xs ${valor ? 'text-success-600' : 'text-danger-600'}`}>
+                            {valor ? 'Sim' : 'Não'}
+                          </span>
+                        )}
                       </div>
                     ))}
                   </div>

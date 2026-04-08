@@ -54,6 +54,8 @@ export const getDashboard = () => api.get('/checklists/dashboard');
 export const getChecklist = (id) => api.get(`/checklists/${id}`);
 export const validarChecklist = (id, data) => api.patch(`/checklists/${id}/validar`, data);
 export const historicoVeiculo = (veiculoId) => api.get(`/checklists/historico/veiculo/${veiculoId}`);
+export const getNotificacoes = () => api.get('/checklists/notificacoes');
+export const marcarNotificacoesLidas = () => api.patch('/checklists/notificacoes/marcar-lidas');
 
 // Relatório
 export const getConfiguracaoRelatorio = () => api.get('/relatorio/configuracao');

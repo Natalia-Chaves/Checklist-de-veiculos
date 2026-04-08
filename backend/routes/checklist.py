@@ -206,6 +206,76 @@ def dashboard(
         "grafico_semanal": semanal
     }
 
+
+# ── Colaborador: notificações ─────────────────────────────────────────────────
+
+@router.get("/notificacoes")
+def listar_notificacoes(
+    db: Session = Depends(get_db),
+    current_user=Depends(require_colaborador)
+):
+    nao_lidas = (
+        db.query(Checklist)
+        .options(joinedload(Checklist.veiculo), joinedload(Checklist.validacao))
+        .filter(
+            Checklist.colaborador_id == current_user.id,
+            Checklist.notificacao_lida == False,
+            Checklist.status.in_(["aprovado", "reprovado"]),
+        )
+        .order_by(Checklist.atualizado_em.desc())
+        .all()
+    )
+    return {
+        "count": len(nao_lidas),
+        "items": [
+            {
+                "id": c.id,
+                "status": c.status,
+                "data_checklist": str(c.data_checklist),
+                "placa": c.veiculo.placa if c.veiculo else None,
+                "justificativa": c.validacao.justificativa if c.validacao else None,
+            }
+            for c in nao_lidas
+        ],
+    }
+
+
+@router.patch("/notificacoes/marcar-lidas")
+def marcar_notificacoes_lidas(
+    db: Session = Depends(get_db),
+    current_user=Depends(require_colaborador)
+):
+    db.query(Checklist).filter(
+        Checklist.colaborador_id == current_user.id,
+        Checklist.notificacao_lida == False,
+    ).update({Checklist.notificacao_lida: True})
+    db.commit()
+    return {"message": "Notificações marcadas como lidas"}
+
+@router.get("/historico/veiculo/{veiculo_id}", response_model=List[ChecklistResponse])
+def historico_veiculo(
+    veiculo_id: int,
+    db: Session = Depends(get_db),
+    current_user=Depends(require_gestor)
+):
+    veiculo = db.query(Veiculo).filter(Veiculo.id == veiculo_id).first()
+    if not veiculo:
+        raise HTTPException(status_code=404, detail="Veículo não encontrado")
+
+    return (
+        db.query(Checklist)
+        .options(
+            joinedload(Checklist.fotos),
+            joinedload(Checklist.validacao),
+            joinedload(Checklist.veiculo),
+            joinedload(Checklist.colaborador),
+        )
+        .filter(Checklist.veiculo_id == veiculo_id)
+        .order_by(Checklist.data_checklist.desc())
+        .all()
+    )
+
+
 @router.get("/{checklist_id}", response_model=ChecklistResponse)
 def get_checklist(checklist_id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     checklist = (
@@ -248,6 +318,7 @@ def validar_checklist(
 
     # Automação: muda status automaticamente
     checklist.status = payload.decisao
+    checklist.notificacao_lida = False
     checklist.atualizado_em = datetime.now(timezone.utc)
 
     if payload.decisao == "aprovado":
@@ -269,25 +340,3 @@ def validar_checklist(
     registrar_log(db, f"Checklist #{checklist.id} {payload.decisao} pelo gestor {current_user.matricula}", gestor_id=current_user.id)
     return {"message": f"Checklist {payload.decisao} com sucesso"}
 
-@router.get("/historico/veiculo/{veiculo_id}", response_model=List[ChecklistResponse])
-def historico_veiculo(
-    veiculo_id: int,
-    db: Session = Depends(get_db),
-    current_user=Depends(require_gestor)
-):
-    veiculo = db.query(Veiculo).filter(Veiculo.id == veiculo_id).first()
-    if not veiculo:
-        raise HTTPException(status_code=404, detail="Veículo não encontrado")
-
-    return (
-        db.query(Checklist)
-        .options(
-            joinedload(Checklist.fotos),
-            joinedload(Checklist.validacao),
-            joinedload(Checklist.veiculo),
-            joinedload(Checklist.colaborador),
-        )
-        .filter(Checklist.veiculo_id == veiculo_id)
-        .order_by(Checklist.data_checklist.desc())
-        .all()
-    )

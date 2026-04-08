@@ -17,6 +17,7 @@ const PERGUNTAS_BASE = [
   { key: 'avarias_visiveis',          label: 'Existem avarias visíveis?' },
   { key: 'apto_para_uso',             label: 'O veículo está apto para uso?' },
   { key: 'pneus_condicao_adequada',   label: 'Os pneus aparentam condição adequada?' },
+  { key: 'nivel_combustivel',         label: 'Nível de combustível', type: 'select', options: ['Cheio', 'Médio', 'Baixo'] },
 ];
 
 const PERGUNTAS_POR_TIPO = {
@@ -291,6 +292,24 @@ export default function NovoChecklist() {
         {perguntas.map(p => (
           <div key={p.key} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100">
             <p className="text-sm text-gray-700 flex-1 pr-4">{p.label}</p>
+            {p.type === 'select' ? (
+              <div className="flex gap-1.5 flex-shrink-0">
+                {p.options.map(opt => (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => setRespostas({ ...respostas, [p.key]: opt })}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                      respostas[p.key] === opt
+                        ? 'bg-primary-600 text-white border-primary-600 shadow-sm'
+                        : 'bg-white text-gray-500 border-gray-200 hover:border-primary-300'
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            ) : (
             <div className="flex gap-2 flex-shrink-0">
               <button
                 type="button"
@@ -315,6 +334,7 @@ export default function NovoChecklist() {
                 Não
               </button>
             </div>
+            )}
           </div>
         ))}
       </div>

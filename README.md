@@ -37,10 +37,11 @@ Sistema web fullstack para controle de checklist diário de frota veicular, dese
 | 6 | Campo de observações | ✅ | Textarea livre no formulário |
 | 7 | Aprovação/reprovação pelo gestor | ✅ | Workflow com justificativa obrigatória na reprovação |
 | 8 | Dashboard com indicadores | ✅ | Cards de resumo, gráfico semanal, veículos sem checklist |
-| 9 | Gestão de veículos (CRUD) | ✅ | 30+ campos preservados do Excel, filtros e detalhes |
-| 10 | Gestão de colaboradores (CRUD) | ✅ | Cadastro, vínculo ao veículo, ativar/desativar |
-| 11 | Relatórios com filtros | ✅ | Excel e PDF com filtros por período, colaborador, veículo e status |
-| 12 | Primeiro acesso com troca de senha obrigatória | ✅ | Redirect automático para tela de troca |
+| 9 | Gestão de veículos (CRUD) | ✅ | Gestor cadastra, edita e visualiza veículos com 30+ campos, filtros e detalhes |
+| 10 | Gestão de colaboradores (CRUD) | ✅ | Gestor cadastra novos colaboradores, vincula ao veículo, ativa/desativa |
+| 11 | Gestão de responsáveis de manutenção | ✅ | Gestor cadastra e edita responsáveis, vinculados aos veículos |
+| 12 | Relatórios com filtros | ✅ | Excel e PDF com filtros por período, colaborador, veículo e status |
+| 13 | Primeiro acesso com troca de senha obrigatória | ✅ | Redirect automático para tela de troca |
 
 ### Funcionalidades Adicionais (iniciativa própria)
 
@@ -55,11 +56,11 @@ Sistema web fullstack para controle de checklist diário de frota veicular, dese
 | 7 | **Histórico de redefinição de senha** | Gestor visualiza quando e quantas vezes redefiniu a senha de cada colaborador |
 | 8 | **Página "Meu Veículo"** | Colaborador visualiza todos os dados do veículo vinculado |
 | 9 | **Relatórios em PDF** | Além do Excel solicitado, relatórios também em PDF |
-| 10 | **Responsáveis de manutenção** | Gestão e vínculo a veículos, importados do Excel |
-| 11 | **Design responsivo mobile-first** | Interface adaptada para desktop, tablet e mobile |
-| 12 | **Identidade visual corporativa** | Paleta de cores baseada no site institucional da empresa |
-| 13 | **Deploy em produção** | Aplicação publicada no Render com PostgreSQL |
-| 14 | **Documentação Swagger automática** | API documentada e testável em `/docs` |
+| 10 | **Design responsivo mobile-first** | Interface adaptada para desktop, tablet e mobile |
+| 11 | **Identidade visual corporativa** | Paleta de cores baseada no site institucional da empresa |
+| 12 | **Deploy em produção** | Aplicação publicada no Render com PostgreSQL |
+| 13 | **Documentação Swagger automática** | API documentada e testável em `/docs` |
+| 14 | **Notificações para o colaborador** | Ícone de sino com badge no header — avisa quando checklist é aprovado ou reprovado |
 
 ---
 
@@ -179,7 +180,7 @@ npm install && npm start
 
 ## Perguntas do Checklist
 
-**5 perguntas base** aplicadas a todos os veículos:
+**6 perguntas base** aplicadas a todos os veículos:
 
 | # | Pergunta |
 |---|----------|
@@ -188,20 +189,21 @@ npm install && npm start
 | 3 | Existem avarias visíveis? |
 | 4 | O veículo está apto para uso? |
 | 5 | Os pneus aparentam condição adequada? |
+| 6 | Nível de combustível (Cheio / Médio / Baixo) |
 
 **Perguntas adicionais por tipo:**
 
 | # | Carro | Utilitário | Caminhão |
 |---|-------|------------|----------|
-| 6 | Ar-condicionado funcionando? | Caçamba/compartimento de carga em boas condições? | Tacógrafo funcionando? |
-| 7 | Cintos de segurança funcionando e sem rasgos? | Extintor de incêndio dentro da validade? | Luzes e sinalização traseira funcionando? |
-| 8 | Estepe em boas condições e calibrado? | Estepe em boas condições e calibrado? | Freio de estacionamento funcionando? |
-| 9 | — | — | Lona/corda de amarração em boas condições? |
-| 10 | — | — | Extintor de incêndio dentro da validade? |
+| 7 | Ar-condicionado funcionando? | Caçamba/compartimento de carga em boas condições? | Tacógrafo funcionando? |
+| 8 | Cintos de segurança funcionando e sem rasgos? | Extintor de incêndio dentro da validade? | Luzes e sinalização traseira funcionando? |
+| 9 | Estepe em boas condições e calibrado? | Estepe em boas condições e calibrado? | Freio de estacionamento funcionando? |
+| 10 | — | — | Lona/corda de amarração em boas condições? |
+| 11 | — | — | Extintor de incêndio dentro da validade? |
 
 > **Condicional:** Se tração 4x4 → *"Sistema de tração 4x4 funcionando?"*
 >
-> **Total:** Carro: 8 | Utilitário: 8 | Caminhão: 10 (+1 se 4x4)
+> **Total:** Carro: 9 | Utilitário: 9 | Caminhão: 11 (+1 se 4x4)
 
 ---
 
@@ -215,6 +217,7 @@ npm install && npm start
 | 4 | Atualização automática do KM do veículo | Ao gestor aprovar |
 | 5 | Status automático (aprovado/reprovado) | Ao gestor validar |
 | 6 | Justificativa obrigatória na reprovação | Ao reprovar |
+| 7 | Notificação ao colaborador (sino com badge) | Ao gestor aprovar/reprovar |
 
 ---
 
@@ -267,14 +270,16 @@ Todas as rotas sob `/api`. Documentação interativa em `/docs` (Swagger).
 </details>
 
 <details>
-<summary><strong>Checklists</strong> (7 rotas)</summary>
+<summary><strong>Checklists</strong> (9 rotas)</summary>
 
 | Método | Rota | Descrição |
-|--------|------|-----------|
+|--------|------|-----------||
 | POST | `/checklists` | Enviar checklist com fotos |
 | GET | `/checklists/meus` | Meus checklists |
 | GET | `/checklists` | Listar todos (gestor) |
 | GET | `/checklists/dashboard` | Dashboard com resumo |
+| GET | `/checklists/notificacoes` | Notificações não lidas do colaborador |
+| PATCH | `/checklists/notificacoes/marcar-lidas` | Marcar notificações como lidas |
 | GET | `/checklists/{id}` | Detalhes do checklist |
 | PATCH | `/checklists/{id}/validar` | Aprovar/reprovar |
 | GET | `/checklists/historico/veiculo/{id}` | Histórico por veículo |

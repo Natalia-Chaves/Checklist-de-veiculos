@@ -12,6 +12,7 @@ PERGUNTAS_PADRAO = [
     "avarias_visiveis",
     "apto_para_uso",
     "pneus_condicao_adequada",
+    "nivel_combustivel",
 ]
 
 
@@ -25,13 +26,12 @@ class Checklist(Base):
     data_checklist = Column(Date, nullable=False)
     km_atual = Column(Integer, nullable=False)
 
-    # Respostas Sim/Não armazenadas como JSON: {"documentacao_em_dia": true, ...}
     respostas = Column(JSON, nullable=False)
 
-    # Observação livre
     observacao = Column(Text, nullable=True)
 
     status = Column(String(20), default="pendente")  # pendente | aprovado | reprovado
+    notificacao_lida = Column(Boolean, default=True)
     criado_em = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     atualizado_em = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 

@@ -10,6 +10,7 @@ const PERGUNTAS_BASE = [
   { key: 'avarias_visiveis', label: 'Existem avarias visíveis?' },
   { key: 'apto_para_uso', label: 'O veículo está apto para uso?' },
   { key: 'pneus_condicao_adequada', label: 'Os pneus aparentam condição adequada?' },
+  { key: 'nivel_combustivel', label: 'Nível de combustível', type: 'select' },
 ];
 
 const PERGUNTAS_POR_TIPO = {
@@ -116,15 +117,19 @@ export default function ChecklistDetalhe() {
 
         {/* Perguntas */}
         <div className="card space-y-2">
-          <h2 className="font-semibold text-gray-700">Perguntas Sim/Não</h2>
-          {getPerguntas(checklist).map(({ key, label }) => {
+          <h2 className="font-semibold text-gray-700">Perguntas</h2>
+          {getPerguntas(checklist).map(({ key, label, type }) => {
             const resp = checklist.respostas?.[key];
             return (
               <div key={key} className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">{label}</span>
-                <span className={`font-semibold ${resp ? 'text-success-600' : 'text-danger-600'}`}>
-                  {resp ? 'Sim' : 'Não'}
-                </span>
+                {type === 'select' ? (
+                  <span className="font-semibold text-gray-700">{resp || '—'}</span>
+                ) : (
+                  <span className={`font-semibold ${resp ? 'text-success-600' : 'text-danger-600'}`}>
+                    {resp ? 'Sim' : 'Não'}
+                  </span>
+                )}
               </div>
             );
           })}
