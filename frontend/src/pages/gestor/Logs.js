@@ -36,9 +36,9 @@ export default function Logs() {
 
       {logs.length === 0 ? <EmptyState icon={<Search size={48} />} title="Nenhum log registrado" /> : (
         <div className="card p-0 overflow-hidden">
-          <div className="divide-y divide-gray-100 max-h-[70vh] overflow-y-auto">
+          <div className="divide-y divide-gray-100 max-h-72 sm:max-h-[70vh] overflow-y-auto">
             {logs.map(log => (
-              <div key={log.id} className="flex items-start gap-4 px-5 py-3 hover:bg-gray-50 transition-colors">
+              <div key={log.id} className="flex items-start gap-3 sm:gap-4 px-3 sm:px-5 py-3 hover:bg-gray-50 transition-colors">
                 <span className="mt-0.5 text-gray-400">
                   {React.createElement(ICONS[log.acao] || Zap, { size: 18 })}
                 </span>

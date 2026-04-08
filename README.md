@@ -151,11 +151,37 @@ App: http://localhost:3000
 
 ### Área do Colaborador
 - Novo checklist com upload de 5 fotos obrigatórias (câmera ou arquivo)
-- Perguntas dinâmicas por tipo de veículo (Carro: 7, Utilitário: 8, Caminhão: 9)
+- Perguntas dinâmicas por tipo de veículo
 - Validação em tempo real: KM não pode ser inferior ao último registrado
 - Histórico dos próprios checklists com status de aprovação
 - Visualização completa do veículo vinculado (página Meu Veículo)
 - Primeiro acesso obriga troca de senha
+
+#### Perguntas do Checklist
+
+**Perguntas base (todos os veículos):**
+
+| # | Pergunta |
+|---|----------|
+| 1 | Documentação em dia? |
+| 2 | Equipamentos obrigatórios presentes? |
+| 3 | Existem avarias visíveis? |
+| 4 | O veículo está apto para uso? |
+| 5 | Os pneus aparentam condição adequada? |
+
+**Perguntas adicionais por tipo de veículo:**
+
+| # | Carro | Utilitário | Caminhão |
+|---|-------|------------|----------|
+| 6 | Ar-condicionado funcionando? | Caçamba/compartimento de carga em boas condições? | Tacógrafo funcionando? |
+| 7 | Cintos de segurança funcionando e sem rasgos? | Extintor de incêndio dentro da validade? | Luzes e sinalização traseira funcionando? |
+| 8 | Estepe em boas condições e calibrado? | Estepe em boas condições e calibrado? | Freio de estacionamento funcionando? |
+| 9 | — | — | Lona/corda de amarração em boas condições? |
+| 10 | — | — | Extintor de incêndio dentro da validade? |
+
+**Pergunta condicional:** Se o veículo possuir tração 4x4, é adicionada a pergunta *"Sistema de tração 4x4 funcionando?"*.
+
+> **Total de perguntas:** Carro: 8, Utilitário: 8, Caminhão: 10 (+ 1 se tiver tração 4x4)
 
 ### Área do Gestor
 - Dashboard com cards resumo, gráfico semanal e lista de veículos sem checklist

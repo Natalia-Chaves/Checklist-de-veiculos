@@ -232,7 +232,7 @@ export default function NovoChecklist() {
       {/* Data e KM */}
       <div className="card space-y-4">
         <h2 className="font-semibold text-gray-800 flex items-center gap-2"><CalendarDays size={16} /> Informações gerais</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="label">Data do checklist</label>
             <input type="date" className="input" value={data} onChange={e => setData(e.target.value)} required max={new Date().toISOString().split('T')[0]} />
@@ -265,12 +265,12 @@ export default function NovoChecklist() {
             {Object.values(fotos).filter(Boolean).length}/5
           </span>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
           {FOTOS.slice(0, 3).map(f => (
             <FotoUpload key={f.key} label={f.label} icon={f.icon} value={fotos[f.key]} onChange={v => handleSetFoto(f.key, v)} />
           ))}
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
           {FOTOS.slice(3).map(f => (
             <FotoUpload key={f.key} label={f.label} icon={f.icon} value={fotos[f.key]} onChange={v => handleSetFoto(f.key, v)} />
           ))}

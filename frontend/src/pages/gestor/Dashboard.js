@@ -32,7 +32,7 @@ export default function Dashboard() {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
         <StatCard label="Checklists hoje" value={resumo.total_hoje} color="blue" icon={<ClipboardList size={28} />} />
         <StatCard label="Pendentes" value={resumo.pendentes} color="yellow" icon={<Clock size={28} />} />
         <StatCard label="Aprovados" value={resumo.aprovados} color="green" icon={<CheckCircle size={28} />} />
@@ -40,7 +40,7 @@ export default function Dashboard() {
       </div>
 
       {/* Gráfico + Alertas */}
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Gráfico semanal */}
         <div className="card lg:col-span-2">
           <h2 className="text-base font-semibold text-gray-700 mb-4">Checklists — últimos 7 dias</h2>

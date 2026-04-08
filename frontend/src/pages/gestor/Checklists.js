@@ -38,7 +38,7 @@ export default function Checklists() {
 
       {/* Filtros */}
       <div className="card">
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           <div>
             <label className="label">Status</label>
             <select className="input" value={filtros.status} onChange={e => setFiltros({ ...filtros, status: e.target.value })}>

@@ -95,7 +95,7 @@ export default function ChecklistDetalhe() {
       </div>
 
       {/* Info */}
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
         <div className="card space-y-3">
           <h2 className="font-semibold text-gray-700">Informações gerais</h2>
           {[

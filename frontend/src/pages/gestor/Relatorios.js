@@ -40,7 +40,7 @@ export default function Relatorios() {
 
       <div className="card space-y-4">
         <h2 className="font-semibold text-gray-700">Gerar relatório</h2>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">De</label><input type="date" className="input" value={filtros.data_inicio} onChange={e => setFiltros({ ...filtros, data_inicio: e.target.value })} /></div>
           <div><label className="label">Até</label><input type="date" className={`input ${dataInvalida ? 'border-red-400 ring-1 ring-red-300' : ''}`} value={filtros.data_fim} onChange={e => setFiltros({ ...filtros, data_fim: e.target.value })} /></div>
           <div>

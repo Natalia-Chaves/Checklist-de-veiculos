@@ -225,7 +225,7 @@ export default function Veiculos() {
               <option value="Inativo">Inativo</option>
             </select>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Cidade</label><input className="input" value={novoVeiculo.cidade} onChange={e => setNovoVeiculo({ ...novoVeiculo, cidade: e.target.value })} /></div>
             <div><label className="label">Estado (UF)</label><input className="input" maxLength={2} value={novoVeiculo.estado} onChange={e => setNovoVeiculo({ ...novoVeiculo, estado: e.target.value.toUpperCase() })} placeholder="SC" /></div>
           </div>
@@ -237,33 +237,33 @@ export default function Veiculos() {
             </select>
           </div>
           <hr className="border-gray-100 my-1" />
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div><label className="label">Nº Frota</label><input className="input" value={novoVeiculo.numero_frota} onChange={e => setNovoVeiculo({ ...novoVeiculo, numero_frota: e.target.value })} /></div>
             <div><label className="label">Ano Fabricação</label><input className="input" type="number" placeholder="2020" value={novoVeiculo.ano_fabricacao} onChange={e => setNovoVeiculo({ ...novoVeiculo, ano_fabricacao: e.target.value })} /></div>
             <div><label className="label">Ano Modelo</label><input className="input" type="number" placeholder="2021" value={novoVeiculo.ano_modelo} onChange={e => setNovoVeiculo({ ...novoVeiculo, ano_modelo: e.target.value })} /></div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Chassi</label><input className="input" value={novoVeiculo.chassi} onChange={e => setNovoVeiculo({ ...novoVeiculo, chassi: e.target.value })} /></div>
             <div><label className="label">Renavam</label><input className="input" value={novoVeiculo.renavam} onChange={e => setNovoVeiculo({ ...novoVeiculo, renavam: e.target.value })} /></div>
           </div>
           <hr className="border-gray-100 my-1" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Proprietário</label><input className="input" value={novoVeiculo.proprietario} onChange={e => setNovoVeiculo({ ...novoVeiculo, proprietario: e.target.value })} /></div>
             <div><label className="label">Tipo de Proprietário</label><input className="input" value={novoVeiculo.tipo_proprietario} onChange={e => setNovoVeiculo({ ...novoVeiculo, tipo_proprietario: e.target.value })} /></div>
           </div>
           <div><label className="label">CC</label><input className="input" value={novoVeiculo.cc} onChange={e => setNovoVeiculo({ ...novoVeiculo, cc: e.target.value })} /></div>
           <hr className="border-gray-100 my-1" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Seguradora</label><input className="input" value={novoVeiculo.seguradora} onChange={e => setNovoVeiculo({ ...novoVeiculo, seguradora: e.target.value })} /></div>
             <div><label className="label">Apólice</label><input className="input" value={novoVeiculo.apolice} onChange={e => setNovoVeiculo({ ...novoVeiculo, apolice: e.target.value })} /></div>
           </div>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div><label className="label">Tipo de Seguro</label><input className="input" value={novoVeiculo.tipo_seguro} onChange={e => setNovoVeiculo({ ...novoVeiculo, tipo_seguro: e.target.value })} /></div>
             <div><label className="label">Franquia</label><input className="input" value={novoVeiculo.franquia} onChange={e => setNovoVeiculo({ ...novoVeiculo, franquia: e.target.value })} /></div>
             <div><label className="label">Data de Inclusão</label><input className="input" type="date" value={novoVeiculo.inclusao} onChange={e => setNovoVeiculo({ ...novoVeiculo, inclusao: e.target.value })} /></div>
           </div>
           <hr className="border-gray-100 my-1" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">KM Atual</label><input className="input" type="number" value={novoVeiculo.km_atual} onChange={e => setNovoVeiculo({ ...novoVeiculo, km_atual: e.target.value })} /></div>
             <div><label className="label">Data do KM Atual</label><input className="input" type="date" value={novoVeiculo.data_km_atual} onChange={e => setNovoVeiculo({ ...novoVeiculo, data_km_atual: e.target.value })} /></div>
           </div>
@@ -284,7 +284,7 @@ export default function Veiculos() {
               {TIPOS.map(t => <option key={t}>{t}</option>)}
             </select>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Cidade</label><input className="input" value={editForm.cidade} onChange={e => setEditForm({ ...editForm, cidade: e.target.value })} /></div>
             <div><label className="label">Estado (UF)</label><input className="input" maxLength={2} value={editForm.estado} onChange={e => setEditForm({ ...editForm, estado: e.target.value.toUpperCase() })} /></div>
           </div>
@@ -303,33 +303,33 @@ export default function Veiculos() {
             </select>
           </div>
           <hr className="border-gray-100 my-1" />
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div><label className="label">Nº Frota</label><input className="input" value={editForm.numero_frota} onChange={e => setEditForm({ ...editForm, numero_frota: e.target.value })} /></div>
             <div><label className="label">Ano Fabricação</label><input className="input" type="number" value={editForm.ano_fabricacao} onChange={e => setEditForm({ ...editForm, ano_fabricacao: e.target.value })} /></div>
             <div><label className="label">Ano Modelo</label><input className="input" type="number" value={editForm.ano_modelo} onChange={e => setEditForm({ ...editForm, ano_modelo: e.target.value })} /></div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Chassi</label><input className="input" value={editForm.chassi} onChange={e => setEditForm({ ...editForm, chassi: e.target.value })} /></div>
             <div><label className="label">Renavam</label><input className="input" value={editForm.renavam} onChange={e => setEditForm({ ...editForm, renavam: e.target.value })} /></div>
           </div>
           <hr className="border-gray-100 my-1" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Proprietário</label><input className="input" value={editForm.proprietario} onChange={e => setEditForm({ ...editForm, proprietario: e.target.value })} /></div>
             <div><label className="label">Tipo de Proprietário</label><input className="input" value={editForm.tipo_proprietario} onChange={e => setEditForm({ ...editForm, tipo_proprietario: e.target.value })} /></div>
           </div>
           <div><label className="label">CC</label><input className="input" value={editForm.cc} onChange={e => setEditForm({ ...editForm, cc: e.target.value })} /></div>
           <hr className="border-gray-100 my-1" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Seguradora</label><input className="input" value={editForm.seguradora} onChange={e => setEditForm({ ...editForm, seguradora: e.target.value })} /></div>
             <div><label className="label">Apólice</label><input className="input" value={editForm.apolice} onChange={e => setEditForm({ ...editForm, apolice: e.target.value })} /></div>
           </div>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div><label className="label">Tipo de Seguro</label><input className="input" value={editForm.tipo_seguro} onChange={e => setEditForm({ ...editForm, tipo_seguro: e.target.value })} /></div>
             <div><label className="label">Franquia</label><input className="input" value={editForm.franquia} onChange={e => setEditForm({ ...editForm, franquia: e.target.value })} /></div>
             <div><label className="label">Data de Inclusão</label><input className="input" type="date" value={editForm.inclusao} onChange={e => setEditForm({ ...editForm, inclusao: e.target.value })} /></div>
           </div>
           <hr className="border-gray-100 my-1" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">KM Atual</label><input className="input" type="number" value={editForm.km_atual} onChange={e => setEditForm({ ...editForm, km_atual: e.target.value })} /></div>
             <div><label className="label">Data do KM Atual</label><input className="input" type="date" value={editForm.data_km_atual} onChange={e => setEditForm({ ...editForm, data_km_atual: e.target.value })} /></div>
           </div>
