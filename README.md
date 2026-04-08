@@ -3,6 +3,8 @@
 Sistema web fullstack para controle de checklist diário de frota veicular, desenvolvido como solução para o desafio técnico **Analista de Sistemas**. A aplicação permite que **colaboradores** registrem inspeções diárias com fotos e respostas padronizadas, enquanto **gestores** aprovam, acompanham indicadores em tempo real e geram relatórios.
 
 > **Deploy em produção:** [acesse a aplicação no Render](https://checklist-veiculos.onrender.com)
+>
+> ⚠️ O serviço utiliza o plano gratuito do Render — após inatividade, o primeiro acesso pode levar ~30 segundos para carregar.
 
 ---
 
