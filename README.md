@@ -122,6 +122,10 @@ Autenticação por matrícula e senha. No primeiro login, o sistema redireciona 
 
 ![Meu Veículo](docs/screenshots/colaborador-meu-veiculo.png)
 
+**Notificações** — Ícone de sino com badge no header avisa quando um checklist é aprovado ou reprovado.
+
+![Notificações](docs/screenshots/colaborador-notificação.png)
+
 ---
 
 ## Quick Start
@@ -273,7 +277,7 @@ Todas as rotas sob `/api`. Documentação interativa em `/docs` (Swagger).
 <summary><strong>Checklists</strong> (9 rotas)</summary>
 
 | Método | Rota | Descrição |
-|--------|------|-----------||
+|--------|------|-----------|
 | POST | `/checklists` | Enviar checklist com fotos |
 | GET | `/checklists/meus` | Meus checklists |
 | GET | `/checklists` | Listar todos (gestor) |

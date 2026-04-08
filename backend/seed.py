@@ -234,7 +234,7 @@ def vincular_responsaveis_manutencao(db, caminho_excel: str):
 
 
 if __name__ == "__main__":
-    caminho_excel = sys.argv[1] if len(sys.argv) > 1 else "../Teste Analista de Sistemas.xlsx"
+    caminho_excel = sys.argv[1] if len(sys.argv) > 1 else "../Teste_Analista_de_Sistemas.xlsx"
 
     criar_tabelas()
     db = SessionLocal()
