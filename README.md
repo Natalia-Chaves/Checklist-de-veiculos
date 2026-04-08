@@ -169,7 +169,7 @@ npm install && npm start
 
 | Perfil | Matrícula | Senha |
 |--------|-----------|-------|
-| Gestor | G0001 | Admin@2024 |
+| Gestor | G0001 | definir no .env |
 | Colaborador | C0001 | C0001@{ano} |
 | Colaborador | C0002 | C0002@{ano} |
 
